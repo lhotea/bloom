@@ -1,0 +1,10 @@
+.multiback2 {
+	width: 400px;
+	height: 180px;
+	padding: 10px 10px 10px 10px;
+	background-color: #a0e0ff;
+	background-image: url(../images/bloomIcon.png), url(../images/horizon.png), url(../images/startupbloom.png);
+	background-position: 0 0, 30px 50px, 0 0, 0 0, 0 0;
+	background-repeat: repeat-x, no-repeat, repeat-x, repeat-x, repeat-x;
+}
+
