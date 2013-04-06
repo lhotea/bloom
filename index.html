@@ -1,6 +1,6 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
+        <head>
 <meta charset="utf-8">
 <title>Bloom</title>
 
@@ -13,16 +13,71 @@
     <link rel="apple-touch-icon" href="images/bloomIcon.png" />
     <link rel="apple-touch-icon-precomposed" href="images/bloomIcon.png" />      
     <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.2.0.min.css" />    
-    <link rel="stylesheet" href="css/bloom.css" />    
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.mobile-1.2.0.min.js"></script>
-    <script type="text/javascript" src="lib/bloom.js"></script>
-
-</head>
-<body>
-<div id="bloom-hor" class="multiback"></div>
 
 
+        </head>
+ 
+        <body>
+                <canvas id="myCanvas" width="568" height="262">
+                        <!-- Insert fallback content here -->
+            Sorry, your browser doesn't support canvas technology
+                </canvas>
+ 
+        <script type="text/javascript">
+                        var canvas;
+                        var ctx;
+                        var x = 568;
+                        var y = 262;
+                        var mx = 2;
+                        var my = 4;
+                        var WIDTH = 568;
+                        var HEIGHT = 262;
+                        var bloom1= new Image();
+                        bloom1.src='images/bloomIcon.png';
+                        var bloom2= new Image();
+                        bloom2.src='images/horizon.png';
+                        var bloom3= new Image();
+                        bloom3.src='images/startupbloom.png';
+ 
+function circle(x,y,r) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI*2, true);
+  ctx.fill();
+}
+function bloom(image,x,y) {
+	ctx.drawImage(image,x,y);
+}
 
-</body>
+function clear() {
+  ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+ 
+function init() {
+  canvas = document.getElementById("myCanvas");
+  ctx = canvas.getContext("2d");
+  return setInterval(draw, 20);
+}
+ 
+function draw() {
+  clear();
+  bloom(bloom1,x,y);
+  bloom(bloom2,WIDTH - x,HEIGHT - y);
+  bloom(bloom3,WIDTH - x,y);
+  
+  if (x + mx > WIDTH || x + mx < 0)
+    mx = -mx;
+  if (y + my > HEIGHT || y + my < 0)
+    my = -my;
+ 
+  x += mx;
+  y += my;
+ 
+}
+ 
+init();
+ 
+                </script>
+        </body>
 </html>
