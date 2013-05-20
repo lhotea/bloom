@@ -2,82 +2,103 @@
 <html>
         <head>
 <meta charset="utf-8">
-<title>Bloom</title>
+<title>LearningApp</title>
 
 
     <!-- web app /-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="apple-touch-startup-image" href="images/startupbloom.png" />
-    <link rel="apple-touch-icon" href="images/bloomIcon.png" />
-    <link rel="apple-touch-icon-precomposed" href="images/bloomIcon.png" />      
-    <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.2.0.min.css" />    
+    <link rel="apple-touch-startup-image" href="images/lernapp.png" />
+    <link rel="apple-touch-icon" href="images/lernapp.png" />
+    <link rel="apple-touch-icon-precomposed" href="images/learnapp.png" />      
+    <link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />    
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.mobile-1.2.0.min.js"></script>
+	<script src="lib/learningapp.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
 
+<style type="text/css">
+     html, body, #map-canvas 
+    {
+        margin: 0;
+        padding: 0;
+        height: 400px;
+    }
+    
+    .la-hidden
+    {
+    	display: none;
+    }
+    </style>
+ 
 
         </head>
  
         <body>
-                <canvas id="myCanvas" width="568" height="262">
-                        <!-- Insert fallback content here -->
-            Sorry, your browser doesn't support canvas technology
-                </canvas>
- 
-        <script type="text/javascript">
-                        var canvas;
-                        var ctx;
-                        var x = 568;
-                        var y = 262;
-                        var mx = 2;
-                        var my = 4;
-                        var WIDTH = 568;
-                        var HEIGHT = 262;
-                        var bloom1= new Image();
-                        bloom1.src='images/bloomIcon.png';
-                        var bloom2= new Image();
-                        bloom2.src='images/horizon.png';
-                        var bloom3= new Image();
-                        bloom3.src='images/startupbloom.png';
- 
-function circle(x,y,r) {
-  ctx.beginPath();
-  ctx.arc(x, y, r, 0, Math.PI*2, true);
-  ctx.fill();
-}
-function bloom(image,x,y) {
-	ctx.drawImage(image,x,y);
-}
+<!-- Home -->
+  <div data-role="page" id="pays">
+      <div data-theme="a" data-role="header">
+          <h3>
+              Lern App
+          </h3>
+      </div>
 
-function clear() {
-  ctx.clearRect(0, 0, WIDTH, HEIGHT);
-}
- 
-function init() {
-  canvas = document.getElementById("myCanvas");
-  ctx = canvas.getContext("2d");
-  return setInterval(draw, 20);
-}
- 
-function draw() {
-  clear();
-  bloom(bloom1,x,y);
-  bloom(bloom2,WIDTH - x,HEIGHT - y);
-  bloom(bloom3,WIDTH - x,y);
+<div data-role="content">
+          <ul data-role="listview" data-divider-theme="b" data-inset="true" id="pays-list" >
+              <li data-role="list-divider" role="heading">
+                  Land
+              </li>
+              <li data-theme="b" class="country la-hidden" country="Default" capitale="Default"  >
+                  <a href="#capitale" data-transition="slide">
+					Default
+				</a>
+              </li>
+          </ul>
+
+ </div>
+      <div id="main-header" data-theme="a" data-role="footer" data-position="fixed">
+          <h3>
+              Arnaud's Apps
+          </h3>
+      </div>
+  </div>
   
-  if (x + mx > WIDTH || x + mx < 0)
-    mx = -mx;
-  if (y + my > HEIGHT || y + my < 0)
-    my = -my;
- 
-  x += mx;
-  y += my;
- 
-}
- 
-init();
- 
-                </script>
+   <div data-role="page" id="capitale">
+      <div data-theme="a" data-role="header">
+      <div id="header-grid" class="ui-grid-b a">
+              <div class="ui-block-a"><h4>Hauptstädte</h4></div>      
+              <div class="ui-block-b">
+          <h4>
+              Lern App
+          </h4>
+          </div>
+              <div class="ui-block-c">
+              <a href="#pays" data-transition="flip" data-theme="a" data-role="button" data-icon="">
+                          Zurück
+                      </a>
+              </div>
+          </div>
+          
+          
+      </div>
+      <div data-role="content" id="header-capitale" >
+          <ul data-role="listview" data-divider-theme="b" data-inset="true">
+              <li data-role="list-divider" role="heading">
+                  Country - x
+              </li>
+              <li>capitale</li>
+         </ul>
+		<div id="map-canvas"></div>
+
+	</div>
+      <div id="main-header" data-theme="a" data-role="footer" data-position="fixed">
+          <h3>
+              Arnaud's Apps
+          </h3>
+      </div>
+  </div>
+  
+  
         </body>
 </html>
